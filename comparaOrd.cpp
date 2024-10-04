@@ -2,11 +2,10 @@
 #include <ctime>
 #include <cstdlib>
 #include <chrono>
-#include <thread>
 
 using namespace std;
 
-const int MAXIMONUMERO = 3000;
+const int MAXIMONUMERO = 10000;
 
 void reduce(int arreglo[], int inicio, int final){
 	int cen, pos, aux;
@@ -117,8 +116,7 @@ void menu(int arreglo1[], int arreglo2[], int n){
 				break;
 			default:
 				cout << "Opcion invalida" << endl;
-		} 
-		cout << endl;	
+		} 	
 	} while(option != 0);
 
 }
