@@ -7,45 +7,36 @@ using namespace std;
 
 const int MAXIMONUMERO = 10000;
 
-void reduce(int arreglo[], int inicio, int final){
-	int cen, pos, aux;
-	int izq = inicio;
-	int der = final;
-	pos = izq;
-	cen = 1;
-	while(cen == 1){
-		cen = 0;
-		while((arreglo[pos] <= arreglo[der]) && (pos != der)){
-			der--;
-		}
-		if (pos != der){
-			aux = arreglo[pos];
-			arreglo[pos]= arreglo[der];
-			arreglo[der] = aux;
-			pos = der;
-			
-			while((arreglo[pos] >= arreglo[izq]) && (pos != izq)){
-				izq++;
-			}
-			if (pos != izq){
-				aux = arreglo[pos];
-				arreglo[pos] = arreglo[izq];
-				arreglo[izq] = aux;
-				pos = izq;
-				cen = 1;
-			}
-		}
-		if (pos-1 > inicio){
-			reduce(arreglo, inicio, pos-1);
-		}
-		if (pos+1 < final){
-			reduce(arreglo, pos+1, final);
-		}
-	}
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
-void quickSort(int arreglo[], int n){
-	reduce(arreglo, 0, n-1);
+int particion(int arreglo[], int bajo, int alto) {
+    int pivote = arreglo[alto]; 
+    int i = bajo - 1;           
+
+    for (int j = bajo; j < alto; j++) {
+        if (arreglo[j] < pivote) {
+            i++;
+            swap(arreglo[i], arreglo[j]); 
+        }
+    }
+    swap(arreglo[i + 1], arreglo[alto]);
+    return i + 1;                                
+}
+
+void quickSortR(int arreglo[], int bajo, int alto) {
+    if (bajo < alto) {
+        int indicePivote = particion(arreglo, bajo, alto); 
+        quickSortR(arreglo, bajo, indicePivote - 1);        
+        quickSortR(arreglo, indicePivote + 1, alto);       
+    }
+}
+
+void quickSort(int arreglo[], int n) {
+    quickSortR(arreglo, 0, n - 1);
 }
 
 void insercionDirecta(int arreglo[],int n){
