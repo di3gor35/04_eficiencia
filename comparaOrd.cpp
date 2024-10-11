@@ -92,6 +92,7 @@ void menu(int arreglo1[], int arreglo2[], int n){
 		cout << "0. Salir" << endl;
 		cout << "Opcion: ", cin >> option;
 		cout << endl;
+		
 		switch(option){
 			case 1:
 				ejecutarInsercionDirecta(arreglo1, n);
@@ -101,6 +102,7 @@ void menu(int arreglo1[], int arreglo2[], int n){
 				break;
 			case 3:
 				generarArregloAleatorio(arreglo1, arreglo2, n);
+				cout << "Arreglos correctamente generados aleatoriamente" << endl;
 				break;
 			case 0:
 				cout << "Saliendo..." << endl;
